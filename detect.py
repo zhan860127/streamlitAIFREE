@@ -5,6 +5,10 @@ import threading
 from camera import write_button
 # css injection
 
+def anaylze (a,b):
+    data=["30%","30%","35%","This is a purely informational message"]
+    return data
+
 def returnst ():
     return st
 def _max_width_():
@@ -61,3 +65,14 @@ if st.session_state['refresh'] and st.session_state['key']:
     st.session_state['refresh']= False
     st.experimental_rerun()
 
+
+
+
+if st.button('analyze', disabled=(st.session_state['upload'] ==None or st.session_state['upload2'] ==None)):
+    st.markdown("#### Result")
+    col1,col2,col3=st.columns(3)
+    result=anaylze(st.session_state['upload'],st.session_state['upload2'])
+    col1.metric(label="緊緻汙泥", value=result[0])
+    col2.metric(label="蓬鬆汙泥", value=result[1])
+    col3.metric(label="清澈區域", value=result[2])
+    st.info(result[3], icon="ℹ️")

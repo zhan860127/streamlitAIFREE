@@ -13,7 +13,6 @@ def write_button(data,st1,col1,key):
         return data
 
     if data[0]:
-        print("123")
         image = col1.camera_input("Take a picture",key=key+2)
         data[2] = image
         if image != None:
