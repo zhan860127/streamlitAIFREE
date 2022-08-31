@@ -4,6 +4,10 @@ import streamlit as st
 
 
 def write_button(data,st1,col1,key):
+    if(key==1):
+        col1.subheader("亮視野")
+    elif(key==10):
+        col1.subheader("暗視野")
     if data[0]!=True:
         uploaded_file = col1.file_uploader("choose image from local",key=key)
         data[2]=uploaded_file

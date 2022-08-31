@@ -76,3 +76,7 @@ if st.button('analyze', disabled=(st.session_state['upload'] ==None or st.sessio
     col2.metric(label="蓬鬆汙泥", value=result[1])
     col3.metric(label="清澈區域", value=result[2])
     st.info(result[3], icon="ℹ️")
+    col1.empty()
+    col2.empty()
+    st.experimental_rerun()
+
