@@ -8,7 +8,7 @@ def write_button(data,st1,col1,key):
         col1.subheader("亮視野")
     elif(key==10):
         col1.subheader("暗視野")
-    if data[0]!=True:
+    if data[0]!=True :
         uploaded_file = col1.file_uploader("choose image from local",key=key)
         data[2]=uploaded_file
     if col1.button('使用攝像頭',key=key+1):
@@ -39,9 +39,9 @@ def write_button(data,st1,col1,key):
 
     if data[2] != None:
         col1.image(data[2])
-        if col1.button('clear',key=key+6):
-            uploaded_file=None
-            data[2] = None
-            st.experimental_rerun()
-        
+        # if col1.button('clear',key=key+6):
+        #     uploaded_file=None
+        #     data[2] = None
+        #     st1.experimental_rerun()
+        #     return data
     return data
