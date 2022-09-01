@@ -1,41 +1,58 @@
 import streamlit as st
 
+from streamlit.components.v1 import html
+import numpy as np
+import streamlit.components.v1 as components
+from app import create_webrtc
+HtmlFile = open("index.html", 'r', encoding='utf-8')
+source_code = HtmlFile.read()
+# print(source_code)
 
 
+my_js = """var videoElement = document.querySelector('video');
+console.log(videoElement)
+"""
 
-def write_button(data,st1,col1,key):
-    if(key==1):
+# Wrapt the javascript as html code
+my_html = f"<script>{my_js}</script>"
+
+# Execute your app
+
+
+def write_button(data, st1, col1, key):
+    if(key == 1):
         col1.subheader("亮視野")
-    elif(key==10):
+    elif(key == 10):
         col1.subheader("暗視野")
-    if data[0]!=True :
-        uploaded_file = col1.file_uploader("choose image from local",key=key)
-        data[2]=uploaded_file
-    if col1.button('使用攝像頭',key=key+1):
+    if data[0] != True:
+        uploaded_file = col1.file_uploader("choose image from local", key=key)
+        data[2] = uploaded_file
+    if col1.button('使用攝像頭', key=key+1):
+
         col1.empty()
         data[0] = True
         return data
 
     if data[0]:
-        image = col1.camera_input("Take a picture",key=key+2)
-        data[2] = image
-        if image != None:
-            if col1.button('upload camera',key=key+3):
-                data[2] = data[1]
+        print("data2"+str(data[2]))
+        image = create_webrtc(col1, str(key+9))
+        # print(image)
+        if type(image) == np.ndarray:
+            if col1.button('upload camera', key=key+3):
+                # html(my_html)
+                data[2] = image
                 data[0] = False
-                data[1] = None
-                if col1.button('cancel',key=key+4):
+                return data
+                if col1.button('cancel', key=key+4):
                     col1.empty()
                     data[1] = None
                     data[2] = None
-                elif col1.button('done',key=key+5):
+                elif col1.button('done', key=key+5):
                     data[1] = None
         return data
 
     else:
         data[1] = None
-
-
 
     if data[2] != None:
         col1.image(data[2])
