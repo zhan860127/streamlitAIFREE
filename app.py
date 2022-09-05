@@ -38,6 +38,6 @@ def create_webrtc(col, key):
             with ctx.video_transformer.frame_lock:
                 in_image = ctx.video_transformer.in_image
                 out_image = ctx.video_transformer.out_image
-                col.image(out_image)
-            return out_image
+                # col.image(out_image)
+                return out_image
     return None

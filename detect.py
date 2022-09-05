@@ -62,7 +62,8 @@ col1, col2 = st.columns(2)
 data = write_button(data, st, col1, 1)
 data1 = write_button(data1, st, col2, 10)
 
-
+print(data)
+# print(data1)
 st.session_state['key'] = data[0]
 st.session_state['key2'] = data1[0]
 st.session_state['image'] = data[1]
@@ -76,16 +77,17 @@ if st.session_state['refresh'] and st.session_state['key']:
     st.experimental_rerun()
 
 
-if st.button('analyze', disabled=(type(st.session_state['upload']) != np.ndarray or type(st.session_state['upload2']) != np.ndarray)):
+if st.button('analyze', disabled=(st.session_state['upload'] is None or st.session_state['upload2'] is None)):
     st.markdown("#### Result")
     col1.empty()
     col2.empty()
 
-    col12, col22, col32 = st.columns(3)
+    col12, col22, col32, col42 = st.columns(4)
     result = analyzeses(
         st.session_state['upload'], st.session_state['upload2'])
     st.image(result[0])
     col12.metric(label="緊緻汙泥", value=result[1])
     col22.metric(label="蓬鬆汙泥", value=result[2])
     col32.metric(label="清澈區域", value=result[3])
-    st.info(result[4], icon="ℹ️")
+    col42.metric(label="其他", value=result[4])
+    st.info(result[5], icon="ℹ️")
