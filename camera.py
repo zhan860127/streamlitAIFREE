@@ -24,41 +24,56 @@ def write_button(data, st1, col1, key):
         col1.subheader("亮視野")
     elif(key == 10):
         col1.subheader("暗視野")
-    if data[0] != True:
+    if data[2] is not None:
+
+        col1.image(data[2])
+
+    if data[0] != True and data[2] is None:
         uploaded_file = col1.file_uploader("choose image from local", key=key)
         data[2] = uploaded_file
-    if col1.button('使用攝像頭', key=key+1):
+        if data[2] is not None:
+            st1.session_state['refresh']=True
 
-        col1.empty()
-        data[0] = True
-        return data
+    # if col1.button('使用攝像頭', key=key+1):
+    #     data[0] = True
+    #     return data
 
-    if data[0]:
-        print("data2"+str(data[2]))
-        image = create_webrtc(col1, str(key+9))
-        # print(image)
-        if type(image) == np.ndarray:
-            if col1.button('upload camera', key=key+3):
-                # html(my_html)
-                data[2] = image
-                data[0] = False
-                return data
-                if col1.button('cancel', key=key+4):
-                    col1.empty()
-                    data[1] = None
-                    data[2] = None
-                elif col1.button('done', key=key+5):
-                    data[1] = None
-        return data
+    # if data[0]:
+    #     # print("data2"+str(data[2]))
 
-    else:
-        data[1] = None
+    #     image = create_webrtc(col1, str(key+9))
+    #     # print(image)
+    #     if type(image) == np.ndarray:
+    #         data[2] = np.copy(image)
+        # if type(data[2]) == np.ndarray:
+        #     # col1.image(data[1])
+        #     if data[2] is not None:
+        #         if col1.button('upload camera', key=key+3):
+        #             print("####")
+        #             print(data)
+        #             print("####")
+        #             if col1.button('done', key=key+4):
+        #                 data[0] = False
+        #                 image = None
+        #                 st1.experimental_rerun()
+        #         else:
+        #             return data
 
-    if data[2] != None:
-        col1.image(data[2])
+            #         # html(my_html)
+
+            #         data[0] = False
+            #         return data
+            #         if col1.button('cancel', key=key+4):
+            #             col1.empty()
+            #             data[1] = None
+            #             data[2] = None
+            #         elif col1.button('done', key=key+5):
+            #             data[1] = None
+
         # if col1.button('clear',key=key+6):
         #     uploaded_file=None
         #     data[2] = None
         #     st1.experimental_rerun()
         #     return data
+
     return data
