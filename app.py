@@ -21,13 +21,12 @@ def create_webrtc(col, key):
             self.out_image = None
 
         def recv(self, frame: av.VideoFrame) -> np.ndarray:
-            in_image = frame.to_ndarray(format="bgr24")
+            in_image = frame.to_image()
 
-            out_image = in_image[:, ::-1, :]  # Simple flipping for example.
-
+            #out_image = in_image[:, ::-1, :]  # Simple flipping for example.
             with self.frame_lock:
                 self.in_image = in_image
-                self.out_image = out_image
+               # self.out_image = out_image
 
     ctx = webrtc_streamer(
         key="snapshot"+str(key), video_processor_factory=VideoTransformer, async_processing=True,
@@ -37,8 +36,9 @@ def create_webrtc(col, key):
         if st.button("Snapshot"):
             with ctx.video_transformer.frame_lock:
                 in_image = ctx.video_transformer.in_image
+                #st.image(in_image)
                 out_image = ctx.video_transformer.out_image
                 # col.image(out_image)
-                return out_image
+                return in_image
     return None
 

@@ -87,8 +87,6 @@ if col2.button("get",key="b",disabled=(image is None)):
         data1[2]=np.copy(data1[1])
         st.session_state['refresh']=True
 
-if type(data[2]) == np.ndarray:
-    print(data[2].shape)
 
 
 #print(data)
