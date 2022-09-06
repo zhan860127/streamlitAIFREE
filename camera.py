@@ -28,33 +28,36 @@ def write_button(data, st1, col1, key):
 
         col1.image(data[2])
 
-    if data[0] != True:
+    if data[0] != True and data[2] is None:
         uploaded_file = col1.file_uploader("choose image from local", key=key)
         data[2] = uploaded_file
+        if data[2] is not None:
+            st1.session_state['refresh']=True
 
-    if col1.button('使用攝像頭', key=key+1):
-        data[0] = True
-        return data
+    # if col1.button('使用攝像頭', key=key+1):
+    #     data[0] = True
+    #     return data
 
-    if data[0]:
-        # print("data2"+str(data[2]))
+    # if data[0]:
+    #     # print("data2"+str(data[2]))
 
-        image = create_webrtc(col1, str(key+9))
-        # print(image)
-        if type(image) == np.ndarray:
-            data[2] = np.copy(image)
-        if type(data[2]) == np.ndarray:
-            # col1.image(data[1])
-            if data[2] is not None:
-                if col1.button('upload camera', key=key+3):
-                    print("####")
-                    print(data)
-                    print("####")
-                    if col1.button('done', key=key+4):
-                        data[0] = False
-                        st1.experimental_rerun()
-                else:
-                    return data
+    #     image = create_webrtc(col1, str(key+9))
+    #     # print(image)
+    #     if type(image) == np.ndarray:
+    #         data[2] = np.copy(image)
+        # if type(data[2]) == np.ndarray:
+        #     # col1.image(data[1])
+        #     if data[2] is not None:
+        #         if col1.button('upload camera', key=key+3):
+        #             print("####")
+        #             print(data)
+        #             print("####")
+        #             if col1.button('done', key=key+4):
+        #                 data[0] = False
+        #                 image = None
+        #                 st1.experimental_rerun()
+        #         else:
+        #             return data
 
             #         # html(my_html)
 

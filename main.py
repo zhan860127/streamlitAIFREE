@@ -18,12 +18,16 @@ def analyzeses(a1, a2):
     print("[Step 2]: Get images.")
     samples = ["Sample_01", "Sample_02", "Sample_03"]
     idx = 0  # or 1 or 2
-
-    bytes_data = a1.getvalue()
-    img_b = cv.imdecode(np.frombuffer(bytes_data, np.uint8), cv.IMREAD_COLOR)
-    bytes_data = a2.getvalue()
-    img_d = cv.imdecode(np.frombuffer(bytes_data, np.uint8), cv.IMREAD_COLOR)
-
+    if type(a1) is not  np.ndarray:
+        bytes_data = a1.getvalue()
+        img_b = cv.imdecode(np.frombuffer(bytes_data, np.uint8), cv.IMREAD_COLOR)
+    else:
+        img_b=a1
+    if type(a2) is not  np.ndarray:    
+        bytes_data = a2.getvalue()
+        img_d = cv.imdecode(np.frombuffer(bytes_data, np.uint8), cv.IMREAD_COLOR)
+    else:
+        img_d=a2
     img = np.concatenate((img_b, img_d), axis=2)
     img = img / 255  # feature scaling
 

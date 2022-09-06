@@ -21,7 +21,7 @@ def create_webrtc(col, key):
             self.out_image = None
 
         def recv(self, frame: av.VideoFrame) -> np.ndarray:
-            in_image = frame.to_ndarray(format="bgr32")
+            in_image = frame.to_ndarray(format="bgr24")
 
             out_image = in_image[:, ::-1, :]  # Simple flipping for example.
 
@@ -30,7 +30,7 @@ def create_webrtc(col, key):
                 self.out_image = out_image
 
     ctx = webrtc_streamer(
-        key="snapshot"+key, video_processor_factory=VideoTransformer, async_processing=True,
+        key="snapshot"+str(key), video_processor_factory=VideoTransformer, async_processing=True,
         media_stream_constraints={"video": True}, mode=WebRtcMode.SENDRECV)
 
     if ctx.video_transformer:
@@ -41,3 +41,4 @@ def create_webrtc(col, key):
                 # col.image(out_image)
                 return out_image
     return None
+
