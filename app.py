@@ -27,13 +27,14 @@ def create_webrtc(col, key):
             with self.frame_lock:
                 self.in_image = in_image
                # self.out_image = out_image
+    container = st.container()
 
     ctx = webrtc_streamer(
         key="snapshot"+str(key), video_processor_factory=VideoTransformer, async_processing=True,
         media_stream_constraints={"video": True}, mode=WebRtcMode.SENDRECV)
 
     if ctx.video_transformer:
-        if st.button("Snapshot"):
+        if container.button("Snapshot"):
             with ctx.video_transformer.frame_lock:
                 in_image = ctx.video_transformer.in_image
                 #st.image(in_image)
