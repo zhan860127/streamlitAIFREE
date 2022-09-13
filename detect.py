@@ -55,9 +55,9 @@ if 'key' not in st.session_state:
 
 
 
-
-st.image("./AF.png", width=100)
-st.title("AI FREE TEAM Dashboard Demo")
+col11,col22=st.columns([6,4])
+col22.image("./AFT_HTG_LOGOS_V3.png",use_column_width='auto')
+col11.title("污泥評估診斷系統")
 
 data = [st.session_state['key'],
         st.session_state['image'], st.session_state['upload'],st.session_state['choose']==1]
