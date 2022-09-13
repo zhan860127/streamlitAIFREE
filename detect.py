@@ -74,11 +74,11 @@ image = create_webrtc(None,None)
 if choose == 1:
     st.markdown(
         f"""<style>
-        div[data-testid="stHorizontalBlock"] > div:first-of-type {{background-color: rgba(255, 255, 0, 0.5);}}""",unsafe_allow_html=True,)
+        div[data-testid="stHorizontalBlock"] > div:first-of-type >div>div>div:last-of-type>div>button {{background-color: rgba(255, 255, 0, 0.5);}}""",unsafe_allow_html=True,)
 elif choose == 2 :
     st.markdown(
         f"""<style>
-        div[data-testid="stHorizontalBlock"] > div:last-of-type {{background-color: rgba(255, 255, 0, 0.5);}}""",unsafe_allow_html=True,)
+        div[data-testid="stHorizontalBlock"] > div:last-of-type >div>div>div:last-of-type>div>button {{background-color: rgba(255, 255, 0, 0.5);}}""",unsafe_allow_html=True,)
 
 
 if image is not None:
