@@ -32,6 +32,17 @@ jobs:
     - name: install with streamlit
       run: |
         pip install -U streamlit-webrtc
-    - name: install with streamlit
-      run: |
-        streamlit run detect.py
+  deploy:
+    runs-on: ubuntu-latest
+    strategy:
+      max-parallel: 5
+    steps:
+    - uses: actions/checkout@v2
+    - name: deploy to vm
+      uses: appleboy/ssh-action@master
+      with:
+          host: ${{ secrets.LINODE_HOST }}
+          username: ubuntu
+          key: ${{ secrets.HOST_SECRET }}
+          script: |
+            git pull
