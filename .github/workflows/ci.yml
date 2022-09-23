@@ -45,4 +45,5 @@ jobs:
           username: ubuntu
           key: ${{ secrets.HOST_SECRET }}
           script: |
+            cd streamlitAIFREE
             git pull
