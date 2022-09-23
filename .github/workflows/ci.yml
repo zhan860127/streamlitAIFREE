@@ -52,10 +52,12 @@ jobs:
       uses: actions/setup-python@v3
       with:
         python-version: 3.7
-    - name: run with streamlit
+    - name: test conda
       run: |
         echo $CONDA/bin >> $GITHUB_PATH
-        source activate
+    - name: test conda
+      run: |
+        source activate        
         conda activate MAI_py37
         pkill streamlit
         streamlit run detect.py --server.port 8888
