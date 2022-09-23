@@ -105,7 +105,7 @@ jobs:
           key: ${{ secrets.HOST_SECRET }}
           script: |
             cd streamlitAIFREE
-            ls
+            export PATH=~/anaconda3/bin:$PATH
             python
             streamlit
 
