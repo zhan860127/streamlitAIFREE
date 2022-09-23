@@ -49,6 +49,7 @@ jobs:
             git pull
     - name: run with streamlit
       run: |
+        echo $CONDA/bin >> $GITHUB_PATH
         source activate
         conda activate MAI_py37
         pkill streamlit
