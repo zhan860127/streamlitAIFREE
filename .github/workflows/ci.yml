@@ -55,6 +55,7 @@ jobs:
           username: ubuntu
           key: ${{ secrets.HOST_SECRET }}
           script: |
+            export PATH=~/anaconda3/bin:$PATH
             conda info --envs
             conda activate MAI_py37
 
