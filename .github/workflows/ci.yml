@@ -20,6 +20,7 @@ jobs:
         echo $CONDA/bin >> $GITHUB_PATH
     - name: Install dependencies
       run: |
+        source activate
         conda create -n MAI_py37 python=3.7
         conda activate MAI_py37
     - name: install AI library
