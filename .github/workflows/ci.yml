@@ -91,17 +91,11 @@ jobs:
           script: |
             streamlit run detect.py --server.port 8888
 
-
-name:test
-
-on: [push]
-
-jobs:
-  build-linux:
+  test:
     runs-on: ubuntu-latest
     strategy:
       max-parallel: 5
-steps:
+    steps:
     - uses: actions/checkout@v2
     - name: deploy to vm
       uses: appleboy/ssh-action@master
@@ -110,6 +104,8 @@ steps:
           username: ubuntu
           key: ${{ secrets.HOST_SECRET }}
           script: |
+            cd streamlitAIFREE
             ls
             python
             streamlit
+
