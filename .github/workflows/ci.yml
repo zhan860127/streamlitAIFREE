@@ -32,3 +32,6 @@ jobs:
     - name: install with streamlit
       run: |
         pip install -U streamlit-webrtc
+    - name: install with streamlit
+      run: |
+        streamlit run detect.py
