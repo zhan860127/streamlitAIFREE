@@ -55,7 +55,7 @@ jobs:
     - name: test conda
       run: |
         echo $CONDA/bin >> $GITHUB_PATH
-    - name: streamlit run
+    - name: conda run
       run: |
         source activate
         conda info --envs
