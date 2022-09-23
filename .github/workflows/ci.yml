@@ -55,9 +55,11 @@ jobs:
     - name: test conda
       run: |
         echo $CONDA/bin >> $GITHUB_PATH
-    - name: test conda
+    - name: streamlit run
       run: |
-        source activate        
+        source activate
+        conda info --envs
+    - name: run streamlit
         conda activate MAI_py37
         pkill streamlit
         streamlit run detect.py --server.port 8888
