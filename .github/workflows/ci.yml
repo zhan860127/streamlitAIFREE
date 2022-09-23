@@ -49,5 +49,4 @@ jobs:
             git pull
             conda info --envs
             conda activate MAI_py37
-            pkill streamlit
             streamlit run detect.py --server.port 8888
