@@ -48,7 +48,7 @@ jobs:
             cd streamlitAIFREE
             git pull
     - uses: actions/checkout@v2
-    - name: run streamlit
+    - name: conda check
       uses: appleboy/ssh-action@master
       with:
           host: ${{ secrets.LINODE_HOST }}
@@ -57,6 +57,15 @@ jobs:
           script: |
             export PATH=~/anaconda3/bin:$PATH
             source activate
-            conda info --envs
             conda activate MAI_py37
+    - name: streamlit run
+      uses: appleboy/ssh-action@master
+      with:
+          host: ${{ secrets.LINODE_HOST }}
+          username: ubuntu
+          key: ${{ secrets.HOST_SECRET }}
+          script: |
+            streamlit run detect.py --server.port 8888
+
+
 
