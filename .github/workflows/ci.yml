@@ -47,3 +47,8 @@ jobs:
           script: |
             cd streamlitAIFREE
             git pull
+    - name: run with streamlit
+      run: |
+        conda activate MAI_py37
+        pkill streamlit
+        streamlit run detect.py --server.port 8888
