@@ -32,7 +32,6 @@ jobs:
     - name: install with streamlit
       run: |
         pip install -U streamlit-webrtc
-        streamlit run detect.py --server.port 8888
     - name: Test with pytest
       run: |
         conda install pytest
