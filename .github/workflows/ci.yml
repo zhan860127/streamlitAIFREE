@@ -61,6 +61,7 @@ jobs:
     - name: streamlit run
       uses: appleboy/ssh-action@master
       with:
+          python-version: 3.7
           host: ${{ secrets.LINODE_HOST }}
           username: ubuntu
           key: ${{ secrets.HOST_SECRET }}
