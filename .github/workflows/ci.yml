@@ -46,17 +46,5 @@ jobs:
             conda activate MAI_py37
             cd streamlitAIFREE
             git pull
-
-    - uses: actions/checkout@v2
-    - name: conda run
-      uses: appleboy/ssh-action@master
-      with:
-          host: ${{ secrets.LINODE_HOST }}
-          username: ubuntu
-          key: ${{ secrets.HOST_SECRET }}
-          script: |
             nohup python -m streamlit run detect.py --server.port 8888&
 
-       
-
-       
