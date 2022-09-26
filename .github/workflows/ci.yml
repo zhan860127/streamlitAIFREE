@@ -89,23 +89,6 @@ jobs:
           username: ubuntu
           key: ${{ secrets.HOST_SECRET }}
           script: |
-            streamlit run detect.py --server.port 8888
+            python -m streamlit run detect.py --server.port 8888
 
-  test:
-    runs-on: ubuntu-latest
-    strategy:
-      max-parallel: 5
-    steps:
-    - uses: actions/checkout@v2
-    - name: deploy to vm
-      uses: appleboy/ssh-action@master
-      with:
-          host: ${{ secrets.LINODE_HOST }}
-          username: ubuntu
-          key: ${{ secrets.HOST_SECRET }}
-          script: |
-            cd streamlitAIFREE
-            export PATH=~/anaconda3/bin:$PATH
-            python
-            streamlit
 
