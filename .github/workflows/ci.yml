@@ -52,7 +52,7 @@ jobs:
           username: ubuntu
           key: ${{ secrets.HOST_SECRET }}
           script: |
-            streamlit run detect.py --server.port 8888
+            python -m streamlit run detect.py --server.port 8888
         
         
   deploy:
