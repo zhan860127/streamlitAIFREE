@@ -48,6 +48,6 @@ jobs:
             cd streamlitAIFREE
             git pull
             
-            nohup python -m streamlit run detect.py --server.port 8888 >> ./serverStreamlitLog$(date +%Y%m%d).log&
+            nohup python -m streamlit run detect.py --server.port 8888&
 
        
