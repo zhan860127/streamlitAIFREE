@@ -41,14 +41,13 @@ jobs:
           username: ubuntu
           key: ${{ secrets.HOST_SECRET }}
           script: |
-            pkill -f streamlit
             export PATH=~/anaconda3/bin:$PATH
             source activate
             conda activate MAI_py37
             cd streamlitAIFREE
             git pull
 
-             - uses: actions/checkout@v2
+    - uses: actions/checkout@v2
     - name: conda run
       uses: appleboy/ssh-action@master
       with:
