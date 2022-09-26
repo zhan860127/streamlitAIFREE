@@ -41,12 +41,13 @@ jobs:
           username: ubuntu
           key: ${{ secrets.HOST_SECRET }}
           script: |
+            pkill -f streamlit
             export PATH=~/anaconda3/bin:$PATH
             source activate
             conda activate MAI_py37
             cd streamlitAIFREE
             git pull
-            pkill -f streamlit
+            
             nohup python -m streamlit run detect.py --server.port 8888 >> ./serverStreamlitLog$(date +%Y%m%d).log&
 
        
