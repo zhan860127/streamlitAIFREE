@@ -46,6 +46,7 @@ jobs:
             conda activate MAI_py37
             cd streamlitAIFREE
             git pull
+            pkill streamlit
             nohup python -m streamlit run detect.py --server.port 8888 >> ./serverStreamlitLog$(date +%Y%m%d).log&
 
        
