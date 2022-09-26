@@ -46,6 +46,5 @@ jobs:
             conda activate MAI_py37
             cd streamlitAIFREE
             git pull
-            sudo pkill -f streamlit
             bash ./build.sh
 
