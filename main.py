@@ -16,18 +16,18 @@ def analyzeses(a1, a2):
     # Step 2: Get Images #
     # ================== #
     print("[Step 2]: Get images.")
-    samples = ["Sample_01", "Sample_02", "Sample_03"]
-    idx = 0  # or 1 or 2
-    if type(a1) is not  np.ndarray:
+    if type(a1) is not np.ndarray:
         bytes_data = a1.getvalue()
-        img_b = cv.imdecode(np.frombuffer(bytes_data, np.uint8), cv.IMREAD_COLOR)
+        img_b = cv.imdecode(np.frombuffer(
+            bytes_data, np.uint8), cv.IMREAD_COLOR)
     else:
-        img_b=a1
-    if type(a2) is not  np.ndarray:    
+        img_b = a1
+    if type(a2) is not np.ndarray:
         bytes_data = a2.getvalue()
-        img_d = cv.imdecode(np.frombuffer(bytes_data, np.uint8), cv.IMREAD_COLOR)
+        img_d = cv.imdecode(np.frombuffer(
+            bytes_data, np.uint8), cv.IMREAD_COLOR)
     else:
-        img_d=a2
+        img_d = a2
     img = np.concatenate((img_b, img_d), axis=2)
     img = img / 255  # feature scaling
 
@@ -153,7 +153,3 @@ def plot_and_save_fig(full_mask, viz):
     plt.savefig("display.png")
     if viz:
         plt.show()
-
-
-if __name__ == "__main__":
-    main()

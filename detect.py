@@ -50,54 +50,55 @@ if 'key' not in st.session_state:
     st.session_state['refresh'] = False
     st.session_state['choose'] = 0
 
-col11, col22= st.columns([6 , 4])
+col11, col22 = st.columns([6, 4])
 col22.image("./AFT_HTG_LOGOS_V3.png", use_column_width='auto')
 col11.title("污泥評估診斷系統")
 if 'key' in st.session_state:
     data = [st.session_state['key'], st.session_state['image'],
-            st.session_state['upload'], st.session_state['choose']==1]
+            st.session_state['upload'], st.session_state['choose'] == 1]
     data1 = [st.session_state['key2'], st.session_state['image2'],
-            st.session_state['upload2'], st.session_state['choose']==2]
+             st.session_state['upload2'], st.session_state['choose'] == 2]
     choose = st.session_state['choose']
-    col1, col2 = st.columns(2,gap="large")
+    col1, col2 = st.columns(2, gap="large")
     data = write_button(data, st, col1, 1)
     data1 = write_button(data1, st, col2, 10)
 
     image = None
-    image = create_webrtc(None,None)
+    image = create_webrtc(None, None)
 
     if choose == 1:
         st.markdown(
-            f"""<style>
+            """<style>
             div[data-testid="stHorizontalBlock"] > div:first-of-type >
-            div>div>div:last-of-type>div>button 
-            {{background-color: rgba(255, 255, 0, 0.5);}}""",unsafe_allow_html=True,)
-    elif choose == 2 :
+            div>div>div:last-of-type>div>button
+            {{background-color: rgba(255, 255, 0, 0.5);}}""",
+            unsafe_allow_html=True,)
+    elif choose == 2:
         st.markdown(
-            f"""<style>
+            """<style>
             div[data-testid="stHorizontalBlock"] > div:last-of-type >
-            div>div>div:last-of-type>div>button 
-            {{background-color: rgba(255, 255, 0, 0.5);}}""",unsafe_allow_html=True,)
-
+            div>div>div:last-of-type>div>button
+            {{background-color: rgba(255, 255, 0, 0.5);}}""",
+            unsafe_allow_html=True,)
 
     if image is not None:
         st.session_state['refresh'] = True
-        if choose == 1 :
-            data[2]=np.copy(image)
+        if choose == 1:
+            data[2] = np.copy(image)
         elif choose == 2:
-            data1[2]=np.copy(image)
+            data1[2] = np.copy(image)
 
-    if col1.button("choose",key="a"):
+    if col1.button("choose", key="a"):
         choose = 1
         st.session_state['refresh'] = True
-    if col2.button("choose",key="b"):
+    if col2.button("choose", key="b"):
         choose = 2
         st.session_state['refresh'] = True
     st.session_state['choose'] = choose
 
     # if col1.button("明視野",key="a"):
     #     if data[1] is not None:
-            
+
     #         data[2]=np.copy(data[1])
     #         st.session_state['refresh']=True
 
@@ -106,10 +107,7 @@ if 'key' in st.session_state:
     #         data1[2]=np.copy(data1[1])
     #         st.session_state['refresh']=True
 
-
-
-
-    #print(data)
+    # print(data)
     # print(data1)
     st.session_state['key'] = data[0]
     st.session_state['key2'] = data1[0]
@@ -118,15 +116,12 @@ if 'key' in st.session_state:
     st.session_state['image2'] = data1[1]
     st.session_state['upload2'] = data1[2]
 
-
-
-    if st.session_state['refresh'] :
+    if st.session_state['refresh']:
         st.session_state['refresh'] = False
         st.experimental_rerun()
 
-
-    if st.button('analyze', disabled=(st.session_state['upload'] 
-    is None or st.session_state['upload2'] is None)):
+    if st.button('analyze', disabled=(st.session_state['upload']
+                 is None or st.session_state['upload2'] is None)):
         st.markdown("#### Result")
         col1.empty()
         col2.empty()
