@@ -1,4 +1,4 @@
-name: Python Package using Conda
+name: deploy to vm
 
 on:
   pull_request:
