@@ -50,4 +50,5 @@ jobs:
         streamlit run detect.py &
     - name: Test with pytest
       run: |
+        pip install pytest
         cd tests && pytest --headless --maximize
