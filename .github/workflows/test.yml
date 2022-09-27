@@ -51,4 +51,4 @@ jobs:
     - name: Test with pytest
       run: |
         pip install pytest
-        cd tests && pytest --headless --maximize
+        pytest --headless --maximize
