@@ -49,3 +49,5 @@ jobs:
       run: |
         pip install pytest
         pytest detect.py
+        env:
+          LD_LIBRARY_PATH: /usr/local/lib
