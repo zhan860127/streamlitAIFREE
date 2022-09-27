@@ -48,3 +48,7 @@ jobs:
     - name: Start Streamlit app
       run: |
         streamlit run detect.py &
+    - name: Test with pytest
+      run: |
+          pip install flake8 pytest   
+          pytest
