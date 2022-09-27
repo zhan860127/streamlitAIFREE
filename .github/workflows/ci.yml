@@ -1,10 +1,8 @@
 name: Python Package using Conda
 
 on:
-  push:
-    branches: [ "main" ]
   pull_request:
-    branches: [ "main" ]
+    branches: [ "dev" ]
 
 jobs:  
     if_merged:
