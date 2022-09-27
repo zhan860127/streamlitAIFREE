@@ -48,6 +48,6 @@ jobs:
     - name: Test with pytest
       run: |
         pip install pytest
-        pytest detect.py
+        pytest test_streamlit.py
         env:
           LD_LIBRARY_PATH: /usr/local/lib
