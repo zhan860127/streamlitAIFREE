@@ -10,8 +10,8 @@ def test_streamlit():
     print("hello")
 
 def test_AImodel():
-    a =  np.array(Image.open(r".\test_sample.\Sample_01_B.jpg"))
-    b =  np.array(Image.open(r".\test_sample.\Sample_01_D.jpg"))
-    print(os.path.isfile(r".\test_sample.\Sample_01_B.jpg"))
+    a =  np.array(Image.open(r"./test_sample/Sample_01_B.jpg"))
+    b =  np.array(Image.open(r"./test_sample/Sample_01_D.jpg"))
+    print(os.path.isfile(r"/test_sample/Sample_01_B.jpg"))
     analyzeses(a,b)
 
