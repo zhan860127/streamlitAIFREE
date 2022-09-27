@@ -48,14 +48,3 @@ jobs:
     - name: Start Streamlit app
       run: |
         streamlit run detect.py &
-    - name: Install chromedriver
-      run: |
-          if [ -f tests/requirements.txt ]; then pip install -r tests/requirements.txt; fi
-          seleniumbase install chromedriver 100
-    - name: Test with pytest
-      run: |
-        
-        pip install pytest
-        cd tests
-        pytest detect.py --headless --maximize
-    
