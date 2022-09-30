@@ -33,7 +33,9 @@ def create_webrtc(col, key):
 
     ctx = webrtc_streamer(
         key="snapshot"+str(key), video_processor_factory=VideoTransformer,
-        async_processing=True,
+        async_processing=True, rtc_configuration={  # Add this config
+        "iceServers": [{"urls": ["stun:stun.l.google.com:19302"]}]
+        },
         media_stream_constraints={"video": True}, mode=WebRtcMode.SENDRECV)
 
     if ctx.video_transformer:
