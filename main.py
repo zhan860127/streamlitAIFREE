@@ -81,6 +81,8 @@ def analyze(full_mask, img_w, img_h):
 
 
 def tile_up(img, tile_size):
+    global end_h
+    global end_w
     h, w, c = img.shape
     h_num = h // tile_size
     w_num = w // tile_size
