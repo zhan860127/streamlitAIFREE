@@ -31,6 +31,17 @@ def analyzeses(a1, a2):
     img = np.concatenate((img_b, img_d), axis=2)
     img = img / 255  # feature scaling
 
+    # scale img up to at least 480 x 480
+    h,w,c = img.shape
+    if h < 480:
+        scale = 480 / h
+        img = cv.resize(img, (480, int(c*scale)+1))
+    
+    h, w, c = img.shape
+    if w < 480:
+        scale = 480 / w
+        img = cv.resize(img, (int(h*scale)+1, 480))
+        
     # ================== #
     # Step 3: Tile Image #
     # ================== #
