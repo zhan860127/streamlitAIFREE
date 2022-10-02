@@ -1,0 +1,52 @@
+name: deploy to vm
+
+on:
+  pull_request:
+    branches: [ "dev" ]
+
+jobs:  
+    if_merged:
+      name: 'PR Merged'
+      runs-on: ubuntu-latest
+      strategy:
+        max-parallel: 5
+
+      steps:
+      - uses: actions/checkout@v3
+      - name: Set up Python 3.7
+        uses: actions/setup-python@v3
+        with:
+          python-version: 3.7
+      - name: Add conda to system path
+        run: |
+          # $CONDA is an environment variable pointing to the root of the miniconda directory
+          echo $CONDA/bin >> $GITHUB_PATH
+      - name: Install dependencies
+        run: |
+          source activate
+          conda create -n MAI_py37 python=3.7
+          conda activate MAI_py37
+      - name: install AI library
+        run: |
+          pip install numpy
+          pip install matplotlib
+          pip install tensorflow
+          pip install opencv-python
+      - name: install with streamlit
+        run: |
+          pip install -U streamlit-webrtc
+
+      - uses: actions/checkout@v2
+      - name: conda check
+        uses: appleboy/ssh-action@master
+        with:
+            host: ${{ secrets.LINODE_HOST }}
+            username: ubuntu
+            key: ${{ secrets.HOST_SECRET }}
+            script: |
+              export PATH=~/anaconda3/bin:$PATH
+              source activate
+              conda activate MAI_py37
+              cd streamlitAIFREE
+              git pull
+              bash ./build.sh

@@ -1,4 +1,6 @@
 # streamlitAIFREE
+![example workflow](https://github.com/zhan860127/streamlitAIFREE/actions/workflows/ci.yml/badge.svg)
+![example workflow](https://github.com/zhan860127/streamlitAIFREE/actions/workflows/test.yml/badge.svg)
 
 http 路徑更改(部屬在 cloud 才要
 https://github.com/suyashkumar/ssl-proxy

@@ -1,9 +1,3 @@
-import streamlit as st
-
-from streamlit.components.v1 import html
-import numpy as np
-import streamlit.components.v1 as components
-from app import create_webrtc
 HtmlFile = open("index.html", 'r', encoding='utf-8')
 source_code = HtmlFile.read()
 # print(source_code)
@@ -28,11 +22,11 @@ def write_button(data, st1, col1, key):
 
         col1.image(data[2])
 
-    if data[0] != True and data[2] is None:
+    if data[0] is not True and data[2] is None:
         uploaded_file = col1.file_uploader("choose image from local", key=key)
         data[2] = uploaded_file
         if data[2] is not None:
-            st1.session_state['refresh']=True
+            st1.session_state['refresh'] = True
 
     # if col1.button('使用攝像頭', key=key+1):
     #     data[0] = True
