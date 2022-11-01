@@ -6,7 +6,7 @@ astunparse==1.6.3
 attrs==22.1.0
 autopep8==1.7.0
 av==9.2.0
-backports.zoneinfo==0.2.1
+backports.zoneinfo;python_version<"3.9"
 blinker==1.5
 cachetools==5.2.0
 cffi==1.15.1
