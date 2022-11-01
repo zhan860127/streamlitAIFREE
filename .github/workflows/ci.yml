@@ -1,8 +1,8 @@
 name: deploy to vm
 
 on:
-  pull_request:
-    branches: [ "dev" ]
+  push:
+    branches: [ "main" ]
 
 jobs:  
     if_merged:
