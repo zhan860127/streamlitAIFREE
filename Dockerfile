@@ -12,6 +12,6 @@ RUN apt-get update && apt-get install -y \
 
 RUN git clone https://github.com/zhan860127/streamlitAIFREE.git .
 
-RUN pip3 install -r requirements.txt
+RUN pip install -r requirements.txt
 
 ENTRYPOINT ["streamlit", "run", "detect.py", "--server.port=8501", "--server.address=0.0.0.0"]
