@@ -18,5 +18,7 @@ RUN git clone https://github.com/zhan860127/streamlitAIFREE.git .
 RUN pip install -r requirements.txt
 
 
+HEALTHCHECK --interval=5s --timeout=3s \
+  CMD ["streamlit", "run", "detect.py", "--server.port=8501", "--server.address=0.0.0.0"]
 
 ENTRYPOINT ["streamlit", "run", "detect.py", "--server.port=8501", "--server.address=0.0.0.0"]
